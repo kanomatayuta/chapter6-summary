@@ -10,9 +10,6 @@ $display-block: block;
   font-size: $value;
   font-weight: 700;
 }
-@mixin text-align($value: center) {
-  text-align: $value;
-}
 @mixin margin($value: 100px) {
   margin-right: $value;
   margin-bottom: $value;
@@ -31,12 +28,7 @@ $breakpoints: (
   "sp": "screen and (max-width: 767px)",
 );
 // メディアクエリー
-@mixin mq($breakpoint: tab) {
-  @media #{map-get($breakpoints, $breakpoint)} {
-    @content;
-  }
-}
-@mixin mq($breakpoint: sp) {
+@mixin mq($breakpoint) {
   @media #{map-get($breakpoints, $breakpoint)} {
     @content;
   }
@@ -77,7 +69,7 @@ $tableColor-map: (
   ":first-child": #6ba7eb,
 );
 @each $key, $value in $tableColor-map{
-  .tr#{$key}{
+  tr#{$key}{
     background: $value;
   }
 }
@@ -87,20 +79,20 @@ h2 {
   font-size: 40px;
   letter-spacing: 10px;
 }
+.inner{
+  @include inner;
+}
 // header
 .header {
   width: 100%;
   position: fixed;
   padding: 15px 0;
   z-index: 2;
-  &-inner{
-    @include inner;
-  }
   &-nav {
     display: $display-flex;
     justify-content: space-between;
     .contact {
-      @include text-align;
+      text-align: center;
       font-size: 12px;
       padding: 12px 14px;
       transition: 0.3s;
@@ -154,7 +146,7 @@ main {
   background-size: cover;
   position: relative;
   z-index: 1;
-  &-inner {
+  .inner {
     padding: 400px 0;
     @include mq("tab") {
       padding: 250px 0;
@@ -164,7 +156,7 @@ main {
     }
     .main-title {
       @include title-font(65px);
-      @include text-align;
+      text-align: center;
       margin-bottom: 30px;
       @include mq("sp") {
         font-size: 40px;
@@ -172,7 +164,7 @@ main {
     }
     .sub-title {
       @include title-font(40px);
-      @include text-align;
+      text-align: center;
       @include mq("sp") {
         font-size: 30px;
       }
@@ -189,7 +181,7 @@ main {
     @include inner;
   }
   &-flex{
-    @include text-align;
+    text-align: center;
     display: $display-flex;
     @include mq("tab") {
       display: $display-block;
@@ -224,12 +216,11 @@ main {
 // skills
 .skills {
   padding: 50px 0 70px;
-  &-inner {
+  .inner {
     margin: $margin-center;
-    @include inner;
   }
   &-tit {
-    @include text-align;
+    text-align: center;
     margin-bottom: 50px;
   }
   &-list {
@@ -242,8 +233,9 @@ main {
   &-item {
     @include margin;
     @include mq("tab") {
-      @include text-align;
+      text-align: center;
       margin: 0px;
+      line-height: 0px;
     }
     &:nth-child(3n) {
       @include margin(0px);
@@ -273,9 +265,8 @@ main {
 // plan
 .plan {
   padding: 50px 0;
-  &-inner {
-    @include inner;
-    @include text-align;
+  .inner {
+    text-align: center;
   }
   &-tit{
     margin-bottom: 50px;
@@ -283,7 +274,7 @@ main {
   &-table {
     width: 100%;
     td {
-      @include text-align;
+      text-align: center;
       font-size: 16px;
       line-height: 26px;
       border-left: 2px solid #fff;
@@ -311,11 +302,11 @@ main {
   @include mq("sp") {
     padding: 50px 15px;
   }
-  &-inner {
-    @include inner;
-    @include text-align;
+  .inner {
+    text-align: center;
   }
   &-icon {
+    text-align: center;
     display: $display-flex;
     justify-content: center;
     @include mq("sp") {
@@ -339,11 +330,8 @@ main {
 
 // footer
 .footer {
-  &-inner{
-    @include inner;
-  }
   .copyright {
-    @include text-align(right);
+    text-align: right;
     font-size: 10px;
     letter-spacing: 0.5px;
     padding: 20px 0 25px 0;

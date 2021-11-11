@@ -22,11 +22,7 @@ $display-block: block;
     width: 97%;
   }
 }
-//ブレイクポイント
-$breakpoints: (
-  "tab": "screen and (max-width: 1199px)",
-  "sp": "screen and (max-width: 767px)",
-);
+
 // メディアクエリー
 @mixin tab{
   @media screen and (max-width: 1199px){
